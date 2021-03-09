@@ -1,5 +1,4 @@
 class ImagesController < ApplicationController
-  
   def show
     @image = Image.find(params[:id])
   end
@@ -19,7 +18,8 @@ class ImagesController < ApplicationController
   end
 
   private
-    def image_params
-      params.require(:image).permit(:url)
-    end
+
+  def image_params
+    params.require(:image).permit(:url)
+  end
 end

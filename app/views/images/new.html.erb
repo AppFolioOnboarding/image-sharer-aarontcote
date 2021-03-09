@@ -3,8 +3,11 @@
 <br/>
 <%= form_with model: @image do |form| %>
   <div>
-    <label>Add Your Image URL</label><br>
-    <%= form.text_field :url %>
+    <label>Add Your Image URL</label><br/>
+    <%= form.text_field :url %><br/>
+    <% @image.errors.full_messages_for(:url).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   </div>
   <div>
     <%= form.submit "Save URL" %>

@@ -1,1 +1,12 @@
 <h1>Add New Image</h1>
+<br/>
+<br/>
+<%= form_with model: @image do |form| %>
+  <div>
+    <label>Add Your Image URL</label><br>
+    <%= form.text_field :url %>
+  </div>
+  <div>
+    <%= form.submit "Save URL" %>
+  </div>
+<% end %>

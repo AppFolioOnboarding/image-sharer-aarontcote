@@ -1,0 +1,19 @@
+<div style="float: left; width: 100%; margin-bottom: 2em;">
+  <h1>Add New Image</h1>
+</div>
+<%= form_with model: @image do |form| %>
+  <div>
+    <%= form.label :url, 'Add Your Image URL' %><br>
+    <%= form.text_field :url %><br/>
+    <% if @image.errors.any? %>
+      <ul id='errorList'>
+      <% @image.errors.full_messages_for(:url).each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div>
+    <%= form.submit "Save URL" %>
+  </div>
+<% end %>

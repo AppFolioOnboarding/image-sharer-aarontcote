@@ -33,6 +33,8 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
       post images_path, params: { image: { url: '' } }
     end
 
+    assert_response :unprocessable_entity
+
     assert_select 'ul' do
       assert_select '[id=?]', 'errorList'
     end

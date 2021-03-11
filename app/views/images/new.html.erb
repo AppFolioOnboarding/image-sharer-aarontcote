@@ -1,12 +1,16 @@
+<div style="float: left; width: 100%; margin-bottom: 2em;">
 <h1>Add New Image</h1>
-<br/>
-<br/>
+</div>
 <%= form_with model: @image do |form| %>
   <div>
-    <label>Add Your Image URL</label><br/>
+    <%= form.label :url, 'Add Your Image URL' %><br>
     <%= form.text_field :url %><br/>
-    <% @image.errors.full_messages_for(:url).each do |message| %>
-      <div><%= message %></div>
+    <% if @image.errors.any? %>
+      <ul>
+      <% @image.errors.full_messages_for(:url).each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     <% end %>
   </div>
   <div>

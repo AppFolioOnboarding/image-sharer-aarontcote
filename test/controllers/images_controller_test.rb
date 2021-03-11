@@ -32,5 +32,9 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'Image.count', 0 do
       post images_path, params: { image: { url: '' } }
     end
+
+    assert_select 'ul' do
+      assert_select '[id=?]', 'errorList'
+    end
   end
 end

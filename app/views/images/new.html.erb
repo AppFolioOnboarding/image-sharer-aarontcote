@@ -6,7 +6,7 @@
     <%= form.label :url, 'Add Your Image URL' %><br>
     <%= form.text_field :url %><br/>
     <% if @image.errors.any? %>
-      <ul>
+      <ul id='errorList'>
       <% @image.errors.full_messages_for(:url).each do |message| %>
         <li><%= message %></li>
       <% end %>

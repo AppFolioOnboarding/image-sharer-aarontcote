@@ -92,6 +92,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_select 'img' do
       assert_select '[src=?]', 'https://www.appfolio.com/_nuxt/img/logo-apm-horizontal.6400026.svg'
+      assert_select '[style=?]', 'max-width: 400px;'
     end
   end
 

@@ -2,7 +2,6 @@ require 'test_helper'
 
 class ImagesControllerTest < ActionDispatch::IntegrationTest
   test 'should show all images' do
-
     get images_path
     assert_response :ok
 
@@ -17,12 +16,10 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
         end
       end
     end
-
     assert_equal(source_image_count, page_image_count)
   end
 
   test 'should list newest image first' do
-
     Image.create(url: 'https://pa.cdn.appfolio.com/appfolio/images/apm-white.svg')
 
     get images_path
@@ -34,7 +31,6 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should have all images limited to 400px' do
-
     get images_path
     assert_response :ok
 

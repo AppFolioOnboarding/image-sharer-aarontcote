@@ -21,6 +21,18 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal(source_image_count, page_image_count)
   end
 
+  test 'should list newest image first' do
+
+    Image.create(url: 'https://pa.cdn.appfolio.com/appfolio/images/apm-white.svg')
+
+    get images_path
+    assert_response :ok
+
+    assert_select 'img' do |images|
+      assert_equal Image.last.id.to_s, images[0].attributes['id'].value
+    end
+  end
+
   test 'should have all images limited to 400px' do
 
     get images_path

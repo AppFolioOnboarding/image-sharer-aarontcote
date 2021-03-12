@@ -21,6 +21,20 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal(source_image_count, page_image_count)
   end
 
+  test 'should have all images limited to 400px' do
+
+    get images_path
+    assert_response :ok
+
+    assert_select 'div.card-body' do |elements|
+      elements.each do |element|
+        assert_select element, 'img' do
+          assert_select '[style=?]', 'max-width: 400px;'
+        end
+      end
+    end
+  end
+
   test 'should show image url create form' do
     get new_image_path
     assert_response :ok

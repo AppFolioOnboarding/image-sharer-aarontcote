@@ -1,6 +1,26 @@
 require 'test_helper'
 
 class ImagesControllerTest < ActionDispatch::IntegrationTest
+  test 'should show all images' do
+
+    get images_path
+    assert_response :ok
+
+    source_image_count = Image.all.count
+
+    if source_image_count.positive?
+      page_image_count = 0
+
+      assert_select 'div.card-body' do |elements|
+        elements.each do
+          page_image_count += 1
+        end
+      end
+    end
+
+    assert_equal(source_image_count, page_image_count)
+  end
+
   test 'should show image url create form' do
     get new_image_path
     assert_response :ok

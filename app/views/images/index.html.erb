@@ -1,0 +1,18 @@
+<h1 class="text-center mt-4">Images</h1>
+
+<div class="container">
+  <% @images.each do |image| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-body">
+            <%= image_tag(image.url, alt: '') %>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Added <%= time_ago_in_words(image.created_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

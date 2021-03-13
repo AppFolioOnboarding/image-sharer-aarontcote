@@ -1,7 +1,1 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  url: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
-
-two:
-  url: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png

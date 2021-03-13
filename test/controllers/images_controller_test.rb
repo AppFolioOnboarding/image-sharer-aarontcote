@@ -19,6 +19,15 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal source_image_count, page_image_count
   end
 
+  test 'index should show no images' do
+    Image.delete_all
+
+    get images_path
+    assert_response :ok
+
+    assert_select 'h3.text-center'
+  end
+
   test 'index should list newest image first' do
     setup_sample_image_data
 

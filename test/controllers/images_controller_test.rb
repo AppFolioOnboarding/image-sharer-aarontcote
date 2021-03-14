@@ -48,7 +48,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'div.card-body' do |elements|
       elements.each do |element|
         assert_select element, 'img' do
-          assert_select '[style=?]', 'max-width: 400px;'
+          assert_select '[class=?]', 'card-image'
         end
       end
     end
@@ -92,7 +92,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_select 'img' do
       assert_select '[src=?]', 'https://www.appfolio.com/_nuxt/img/logo-apm-horizontal.6400026.svg'
-      assert_select '[style=?]', 'max-width: 400px;'
+      assert_select '[class=?]', 'card-image'
     end
   end
 

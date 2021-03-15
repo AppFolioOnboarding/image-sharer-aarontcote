@@ -1,19 +1,20 @@
-<div style="float: left; width: 100%; margin-bottom: 2em;">
-  <h1>Add New Image</h1>
-</div>
-<%= form_with model: @image do |form| %>
-  <div>
-    <%= form.label :url, 'Add Your Image URL' %><br>
-    <%= form.text_field :url %><br/>
-    <% if @image.errors.any? %>
-      <ul id='errorList'>
-      <% @image.errors.full_messages_for(:url).each do |message| %>
-        <li><%= message %></li>
+<h1 class="text-center mt-4">Add New Image</h1>
+
+<div class="container">
+  <%= form_with model: @image do |form| %>
+    <div class="form-group">
+      <%= form.label :url, 'Add Your Image URL' %><br>
+      <%= form.text_field :url, class: "form-control" %><br/>
+      <% if @image.errors.any? %>
+        <ul id='errorList'>
+          <% @image.errors.full_messages_for(:url).each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-      </ul>
-    <% end %>
-  </div>
-  <div>
-    <%= form.submit "Save URL" %>
-  </div>
-<% end %>
+    </div>
+    <div>
+      <%= form.submit "Save URL", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

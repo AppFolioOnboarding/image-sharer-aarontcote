@@ -8,6 +8,15 @@ AllCops:
     - 'bin/*'
   TargetRubyVersion: 2.6
 
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: no_empty_lines
+
+Layout/EmptyLinesAroundModuleBody:
+  EnforcedStyle: no_empty_lines
+
+Layout/EmptyLinesAroundBlockBody:
+  EnforcedStyle: no_empty_lines
+
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 

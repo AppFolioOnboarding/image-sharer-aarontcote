@@ -5,6 +5,8 @@
     <div class="form-group">
       <%= form.label :url, 'Add Your Image URL' %><br>
       <%= form.text_field :url, class: "form-control" %><br/>
+      <%= form.label :tag_list, 'Add Your (Comma Separated) Image Tags' %><br>
+      <%= form.text_field :tag_list, class: "form-control" %><br/>
       <% if @image.errors.any? %>
         <ul id='errorList'>
           <% @image.errors.full_messages_for(:url).each do |message| %>

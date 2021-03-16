@@ -7,6 +7,9 @@
         <div class="card-body">
           <%= image_tag(@image.url, alt: '', id: @image.id, class: 'card-image') %>
         </div>
+        <div class="card-footer text-muted">
+          <p class="text-primary"><small>Tags: <%= @image.tag_list.join(', ') %></small></p>
+        </div>
       </div>
     </div>
   </div>

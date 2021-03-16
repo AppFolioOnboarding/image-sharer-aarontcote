@@ -3,4 +3,5 @@ class Image < ApplicationRecord
             presence: true,
             length: { minimum: 10, maximum: 2048 },
             format: { with: URI.regexp(%w[http https]), message: 'has an invalid format' }
+  acts_as_taggable_on :tags
 end

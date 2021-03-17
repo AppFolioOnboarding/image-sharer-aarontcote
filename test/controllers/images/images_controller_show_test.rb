@@ -14,8 +14,11 @@ class ImagesControllerShowTest < ActionDispatch::IntegrationTest
       assert_select '[class=?]', 'card-image'
     end
 
-    assert_select 'p.text-primary' do |tags|
-      assert_equal "Tags: #{created_image.tag_list.join(', ')}", tags[0].text
+    assert_select 'a.js-tag', count: created_image.tag_list.size do |elems|
+      elems.each_with_index do |elem, i|
+        assert_equal created_image.tag_list[i], elem.text
+        assert_equal images_path(tag: created_image.tag_list[i]), elem['href']
+      end
     end
   end
 end

@@ -9,6 +9,10 @@ class ImagesControllerShowTest < ActionDispatch::IntegrationTest
     get image_path(created_image.id)
     assert_response :ok
 
+    assert_select 'a.btn' do
+      assert_select '[href=?]', image_path(created_image)
+    end
+
     assert_select 'img' do
       assert_select '[src=?]', created_image.url
       assert_select '[class=?]', 'card-image'

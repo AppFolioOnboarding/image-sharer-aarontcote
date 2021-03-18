@@ -1,16 +1,20 @@
 module PageObjects
   module Images
     class ImageCard < AePageObjects::Element
+      element :image, locator: '.card-image'
+      collection :tag, locator: '.js-tag'
+
       def url
-        node.find('img')[:src]
+        image.node[:src]
       end
 
       def tags
-        # TODO
+        tag.text.split(' ')
       end
 
       def click_tag!(tag_name)
-        # TODO
+        node.click_on(tag_name)
+        window.change_to(IndexPage)
       end
     end
   end

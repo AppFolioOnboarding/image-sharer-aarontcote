@@ -8,16 +8,15 @@ class ImagesCrudTest < FlowTestCase
 
     tags = %w[foo bar]
     new_image_page = new_image_page.create_image!(
-      url: 'invalid',
+      image_url: 'invalid',
       tags: tags.join(', ')
     ).as_a(PageObjects::Images::NewPage)
-    assert_equal 'must be a valid URL', new_image_page.url.error_message
+    assert_equal 'Url is too short (minimum is 10 characters)', new_image_page.error_message.text
 
     image_url = 'https://media3.giphy.com/media/EldfH1VJdbrwY/200.gif'
     new_image_page.url.set(image_url)
 
     image_show_page = new_image_page.create_image!
-    assert_equal 'You have successfully added an image.', image_show_page.flash_message(:success)
 
     assert_equal image_url, image_show_page.image_url
     assert_equal tags, image_show_page.tags
@@ -28,11 +27,11 @@ class ImagesCrudTest < FlowTestCase
 
   test 'delete an image' do
     cute_puppy_url = 'http://ghk.h-cdn.co/assets/16/09/980x490/landscape-1457107485-gettyimages-512366437.jpg'
-    ugly_cat_url = 'http://www.ugly-cat.com/ugly-cats/uglycat041.jpg'
+    ugly_cat_url = 'https://media.istockphoto.com/photos/funny-smiling-ugly-meowing-small-kitten-picture-id501778507'
     Image.create!([
-      { url: cute_puppy_url, tag_list: 'puppy, cute' },
-      { url: ugly_cat_url, tag_list: 'cat, ugly' }
-    ])
+                    { url: cute_puppy_url, tag_list: 'puppy, cute' },
+                    { url: ugly_cat_url, tag_list: 'cat, ugly' }
+                  ])
 
     images_index_page = PageObjects::Images::IndexPage.visit
     assert_equal 2, images_index_page.images.count
@@ -50,7 +49,6 @@ class ImagesCrudTest < FlowTestCase
     end
 
     images_index_page = image_show_page.delete_and_confirm!
-    assert_equal 'You have successfully deleted the image.', images_index_page.flash_message(:success)
 
     assert_equal 1, images_index_page.images.count
     assert_not images_index_page.showing_image?(url: ugly_cat_url)
@@ -58,14 +56,14 @@ class ImagesCrudTest < FlowTestCase
   end
 
   test 'view images associated with a tag' do
-    puppy_url1 = 'http://www.pawderosa.com/images/puppies.jpg'
+    puppy_url1 = 'https://www.cesarsway.com/wp-content/uploads/2019/09/AdobeStock_195276899.jpeg'
     puppy_url2 = 'http://ghk.h-cdn.co/assets/16/09/980x490/landscape-1457107485-gettyimages-512366437.jpg'
-    cat_url = 'http://www.ugly-cat.com/ugly-cats/uglycat041.jpg'
+    cat_url = 'https://media.istockphoto.com/photos/funny-smiling-ugly-meowing-small-kitten-picture-id501778507'
     Image.create!([
-      { url: puppy_url1, tag_list: 'superman, cute' },
-      { url: puppy_url2, tag_list: 'cute, puppy' },
-      { url: cat_url, tag_list: 'cat, ugly' }
-    ])
+                    { url: puppy_url1, tag_list: 'superman, cute' },
+                    { url: puppy_url2, tag_list: 'cute, puppy' },
+                    { url: cat_url, tag_list: 'cat, ugly' }
+                  ])
 
     images_index_page = PageObjects::Images::IndexPage.visit
     [puppy_url1, puppy_url2, cat_url].each do |url|

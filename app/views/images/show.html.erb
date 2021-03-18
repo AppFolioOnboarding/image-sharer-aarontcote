@@ -14,7 +14,7 @@
           <%= image_tag(@image.url, alt: '', id: @image.id, class: 'card-image') %>
         </div>
         <div class="card-footer text-muted">
-          <p>
+          <p class="js-tag-list">
             <small>
               Tags: <%= safe_join(@image.tags.map { |tag| link_to(tag.name, images_path(tag: tag.name), class: 'js-tag') }, ', ') %>
             </small>

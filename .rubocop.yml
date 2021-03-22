@@ -1,3 +1,5 @@
+require: rubocop-rails
+
 AllCops:
   Exclude:
     - 'db/schema.rb'
@@ -9,14 +11,8 @@ AllCops:
     - 'db/migrate/*.acts_as_taggable_on_engine.rb'
   TargetRubyVersion: 2.6
 
-Layout/EmptyLinesAroundClassBody:
-  EnforcedStyle: no_empty_lines
-
-Layout/EmptyLinesAroundModuleBody:
-  EnforcedStyle: no_empty_lines
-
-Layout/EmptyLinesAroundBlockBody:
-  EnforcedStyle: no_empty_lines
+Layout/EmptyLinesAroundModuleBody:  # sj,pl,sb
+  Enabled: false
 
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
@@ -24,14 +20,88 @@ Layout/FirstArrayElementIndentation:
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
+Layout/EmptyLineAfterMagicComment:
+  Exclude:
+    # We disabled this cop to avoid the warning that results from
+    # copying a migration from an engine to property-app
+    - 'apps/property/db/migrate/*.rb'
+
+Layout/LineLength:
+  Max: 512
+
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
-Layout/LineLength:
-  Max: 112  # Maximum line length from `rails new`
+Metrics/AbcSize:  # bb,rm
+  Enabled: false
+
+Metrics/BlockLength:
+  IgnoredMethods: [
+    # Unit / Controller Tests
+      'setup', 'setup_data', 'test', 'assert_difference', 'assert_no_difference',
+    # Authorization Rules / Access tests
+      'authorization', 'access_tests', 'role',
+    # API param definitions
+      'params', 'optional', 'requires',
+    # API namespaces
+      'namespace', 'resources', 'route_param',
+    # API bodies
+      'get', 'post', 'put', 'patch', 'delete'
+  ]
+
+Metrics/ClassLength:
+  Max: 1024
+
+Metrics/CyclomaticComplexity:
+  Max: 16
+
+Metrics/MethodLength:
+  Max: 128
+
+Metrics/PerceivedComplexity:
+  Max: 16
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Rails/ApplicationJob:
+  Enabled: false
+
+Rails/RefuteMethods: # dr,sb,rm,shf
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/RaiseArgs:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/WordArray:
   Enabled: false

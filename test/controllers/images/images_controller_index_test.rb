@@ -64,6 +64,10 @@ class ImagesControllerIndexTest < ActionDispatch::IntegrationTest
 
     image = Image.last
 
+    assert_select 'a.btn' do
+      assert_select '[href=?]', image_path(image)
+    end
+
     assert_select 'img' do |images|
       assert_equal image.id.to_s, images[0].attributes['id'].value
     end

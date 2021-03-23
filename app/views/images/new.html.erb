@@ -4,13 +4,13 @@
   <%= form_with model: @image do |form| %>
     <div class="form-group">
       <%= form.label :url, 'Add Your Image URL' %><br>
-      <%= form.text_field :url, class: "form-control" %><br/>
+      <%= form.text_field :url, class: "form-control js-url" %><br/>
       <%= form.label :tag_list, 'Add Your (Comma Separated) Image Tags' %><br>
-      <%= form.text_field :tag_list, class: "form-control" %><br/>
+      <%= form.text_field :tag_list, class: "form-control js-tags" %><br/>
       <% if @image.errors.any? %>
-        <ul id='errorList'>
+        <ul id='errorList' class="js-error-list">
           <% @image.errors.full_messages_for(:url).each do |message| %>
-            <li><%= message %></li>
+            <li class="js-error"><%= message %></li>
           <% end %>
         </ul>
       <% end %>

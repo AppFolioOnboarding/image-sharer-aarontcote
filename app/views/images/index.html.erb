@@ -6,8 +6,14 @@
       <div class="row justify-content-md-center">
         <div class="col-8 mt-4">
           <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-header">
+              <%= link_to 'Delete', image_path(image),
+                          method: :delete,
+                          class: 'btn btn-outline-danger float-right',
+                          data: { confirm: 'Are you sure?' } %>
+            </div>
             <div class="card-body">
-              <%= image_tag(image.url, alt: '', id: image.id, class: 'card-image') %>
+              <%= link_to image_tag(image.url, alt: '', id: image.id, class: 'card-image'), image_path(image) %>
             </div>
             <div class="card-footer text-muted">
               <p>
